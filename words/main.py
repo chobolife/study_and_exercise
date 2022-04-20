@@ -4,7 +4,8 @@ def read_data(filename):
         lines = f.readlines()
         for line in lines:
             s = line[:-1].split('	')
-            result.append(s)
+            for item in s:
+                result.append(item)
     return result
 
 def write_result(list_out, filename):
@@ -15,9 +16,8 @@ def write_result(list_out, filename):
 list_in = read_data("word_7A.txt")
 
 set_result = set()
-for item in list_in:
-    for word in item:
-        set_result.add(word)
+for word in list_in:
+    set_result.add(word)
 
 list_result = list(set_result)
 list_result.sort()
