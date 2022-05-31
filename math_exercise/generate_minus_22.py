@@ -1,7 +1,12 @@
 import random
+import configparser
+import list_print
 
-result_number = 10
-result_problem = 36
+cfg = configparser.ConfigParser()
+cfg.read("./env.ini")
+result_file   = cfg.getint('option', 'result_file')
+result_chunk  = cfg.getint('option', 'result_chunk')
+result_repeat = cfg.getint('option', 'result_repeat')
 
 list_ones = []
 for i in range(10):
@@ -13,15 +18,13 @@ for i in range(1, 10):
     for j in range(1, i+1):
         list_tens.append([i,j])
 
-for i in range(result_number):
-    if result_number > 10:
-        fname = "result_{0:02}.txt".format(i)
-    else:
-        fname = "result_{0}.txt".format(i)
+for i in range(result_file):
+    fname = "result_{0}.txt".format(i)
     with open(fname, 'w') as f:
-        for j in range(result_problem):
-            choice_one = random.choice(list_ones)
-            choice_ten = random.choice(list_tens)
-            f.write('{0}{1}-{2}{3}=\n'.format(choice_ten[0], choice_one[0], choice_ten[1], choice_one[1]))
-            if j == 17:
-                f.write('\n')
+        for repeat in range(result_repeat):
+            result = []
+            for j in range(result_chunk):
+                choice_one = random.choice(list_ones)
+                choice_ten = random.choice(list_tens)
+                result.append([choice_ten[0]*10+choice_one[0], choice_ten[1]*10+choice_one[1]])
+            list_print.list_print(f, result_chunk, 0, result)

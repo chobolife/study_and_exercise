@@ -9,14 +9,13 @@ result_chunk  = cfg.getint('option', 'result_chunk')
 result_repeat = cfg.getint('option', 'result_repeat')
 
 list_ones = []
-for i in range(10):
-    for j in range(10-i, 10):
+for i in range(9):
+    for j in range(i+1, 10):
         list_ones.append([i,j])
 
 list_tens = []
 for i in range(1, 10):
-    for j in range(1, 10-i):
-        list_tens.append([i,j])
+    list_tens.append(i)
 
 for i in range(result_file):
     fname = "result_{0}.txt".format(i)
@@ -26,5 +25,5 @@ for i in range(result_file):
             for j in range(result_chunk):
                 choice_one = random.choice(list_ones)
                 choice_ten = random.choice(list_tens)
-                result.append([choice_ten[0]*10+choice_one[0], choice_ten[1]*10+choice_one[1]])
-            list_print.list_print(f, result_chunk, 1, result)
+                result.append([choice_ten*10+choice_one[0], choice_one[1]])
+            list_print.list_print(f, result_chunk, 0, result)
