@@ -8,9 +8,9 @@ result_file   = cfg.getint('option', 'result_file')
 result_chunk  = cfg.getint('option', 'result_chunk')
 result_repeat = cfg.getint('option', 'result_repeat')
 
-for i in range(result_file):
-    fname = "result_{0}.txt".format(i)
-    with open(fname, 'w') as f:
+fname = "result.txt"
+with open(fname, 'w') as f:
+    for i in range(result_file):
         for repeat in range(result_repeat):
             result = []
 
