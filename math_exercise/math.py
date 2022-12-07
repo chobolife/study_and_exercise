@@ -19,11 +19,11 @@ source_file_list = [
 #        'list_minus_16.txt',   #  3
 #        'list_minus_15.txt',   #  4
 #        'list_minus_14.txt',   #  5
-#        'list_minus_13.txt',   #  6
-#        'list_minus_12.txt',   #  7
-#        'list_minus_11.txt',   #  8
-#        'list_minus_10.txt',   #  9
-#        'list_minus_9.txt',    # 36
+        'list_minus_13.txt',   #  6
+        'list_minus_12.txt',   #  7
+        'list_minus_11.txt',   #  8
+        'list_minus_10.txt',   #  9
+        'list_minus_9.txt',    # 36
 #        'list_plus_18.txt',   #  1
 #        'list_plus_17.txt',   #  2
 #        'list_plus_16.txt',   #  3
@@ -33,7 +33,7 @@ source_file_list = [
 #        'list_plus_12.txt',   #  7
 #        'list_plus_11.txt',   #  8
 #        'list_plus_10.txt',   #  9
-        'list_plus_9.txt',    # 36
+#        'list_plus_9.txt',    # 36
         ]
 
 num = 0
@@ -52,7 +52,6 @@ print(result)
 
 print("total lines: {0}".format(len(result)))
 
-random.shuffle(result)
 #word
 #for i in range(result_number):
 #    if result_number > 10:
@@ -60,6 +59,7 @@ random.shuffle(result)
 #    else:
 #        fname = "result_{0}.txt".format(i)
 #    with open(fname, 'w') as f:
+#        random.shuffle(result)
 #        j = 0
 #        for line in result:
 #            j = j + 1
@@ -75,12 +75,15 @@ for i in range(result_number):
     else:
         fname = "result_{0}.txt".format(i)
     with open(fname, 'w') as f:
-        j = 0
-        for line in result:
-            if j == 2:
-                j = 0
-                f.write(line)
-            else:
-                j = j + 1
-                f.write(line[:-1])
+        random.shuffle(result)
+        for j in range(min(len(result), 45)):
+            if j > 0 and j % 3 == 0:
+                f.write('\n')
+            f.write(result[j][:-1])
+            if j % 3 < 2:
                 f.write('\t')
+#            if j % 3 == 2:
+#                f.write(result[j])
+#            else:
+#                f.write(result[j][:-1])
+#                f.write('\t')
